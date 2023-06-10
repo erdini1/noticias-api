@@ -1,6 +1,7 @@
 import { Container, Grid, Typography } from "@mui/material"
 // Desde typeography se utiliza todo lo que es texto. Container es para un contenedor. Grid es para tener una cuadricula en el diseño
 import Formulario from "./components/Formulario"
+import ListadoNoticias from "./components/ListadoNoticias"
 import { NoticiasProvider } from "./context/NoticiasProvider"
 
 function App() {
@@ -29,7 +30,11 @@ function App() {
           <Grid item xs={12} md={6}>
             <Formulario />
           </Grid>
+          <Grid>
+          </Grid>
         </Grid>
+
+        <ListadoNoticias />
 
       </Container>
     </NoticiasProvider>

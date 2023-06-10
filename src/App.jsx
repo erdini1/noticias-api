@@ -1,35 +1,38 @@
 import { Container, Grid, Typography } from "@mui/material"
 // Desde typeography se utiliza todo lo que es texto. Container es para un contenedor. Grid es para tener una cuadricula en el diseño
 import Formulario from "./components/Formulario"
+import { NoticiasProvider } from "./context/NoticiasProvider"
 
 function App() {
 
   return (
-    <Container>
-      <header>
-        <Typography
-          align="center"
-          marginY={5}
-          component={"h1"}
-          variant="h3"
+    <NoticiasProvider>
+      <Container>
+        <header>
+          <Typography
+            align="center"
+            marginY={5}
+            component={"h1"}
+            variant="h3"
+          >
+            Buscador de Noticias
+          </Typography>
+        </header>
+
+        {/* Debe haber un segundo grid porque el de arriab solo le dice que va a ser un grid, el hijo ya va a ser un elemento del grid de arriba por lo que lleva un elemento   */}
+        <Grid
+          container
+          direction={"row"}
+          justifyContent={"center"}
+          alignItems={"center"}
         >
-          Buscador de Noticias
-        </Typography>
-      </header>
-
-      {/* Debe haber un segundo grid porque el de arriab solo le dice que va a ser un grid, el hijo ya va a ser un elemento del grid de arriba por lo que lleva un elemento   */}
-      <Grid
-        container
-        direction={"row"}
-        justifyContent={"center"}
-        alignItems={"center"}
-      >
-        <Grid item xs={12} md={6}>
-          <Formulario />
+          <Grid item xs={12} md={6}>
+            <Formulario />
+          </Grid>
         </Grid>
-      </Grid>
 
-    </Container>
+      </Container>
+    </NoticiasProvider>
   )
 }
 

@@ -1,4 +1,4 @@
-import { FormControl, InputLabel, Select, MenuItem } from "@mui/material"
+import { FormControl, InputLabel, Select, MenuItem, Grid } from "@mui/material"
 import useNoticias from "../hooks/useNoticias"
 
 const CATEGORIAS = [
@@ -16,26 +16,41 @@ const Formulario = () => {
     const { categoria, handleChangeCategoria } = useNoticias()
 
     return (
-        <form>
-            <FormControl fullWidth>
-                <InputLabel>Categoria</InputLabel>
-                <Select
-                    label="categoria"
-                    onChange={handleChangeCategoria}
-                    value={categoria}
-                >
-                    {CATEGORIAS.map(categoria => (
-                        <MenuItem
-                            key={categoria.value}
-                            value={categoria.value}
+        <>
+            <Grid item xs={6} md={6}>
+                <form>
+                    <FormControl fullWidth>
+                        <InputLabel>Categoria</InputLabel>
+                        <Select
+                            label="categoria"
+                            onChange={handleChangeCategoria}
+                            value={categoria}
                         >
-                            {categoria.label}
-                        </MenuItem>
-                    ))}
-                </Select>
+                            {CATEGORIAS.map(categoria => (
+                                <MenuItem
+                                    key={categoria.value}
+                                    value={categoria.value}
+                                >
+                                    {categoria.label}
+                                </MenuItem>
+                            ))}
+                        </Select>
+                    </FormControl>
+                </form>
+            </Grid>
+            <Grid item xs={4} md={4}>
+                <form>
+                    <FormControl fullWidth>
+                        <InputLabel>País</InputLabel>
+                        <Select
+                            label="pais"
+                        >
 
-            </FormControl>
-        </form>
+                        </Select>
+                    </FormControl>
+                </form>
+            </Grid>
+        </>
     )
 }
 

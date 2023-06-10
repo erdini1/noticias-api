@@ -26,12 +26,9 @@ function App() {
           direction={"row"}
           justifyContent={"center"}
           alignItems={"center"}
+          spacing={2}
         >
-          <Grid item xs={12} md={6}>
-            <Formulario />
-          </Grid>
-          <Grid>
-          </Grid>
+          <Formulario />
         </Grid>
 
         <ListadoNoticias />

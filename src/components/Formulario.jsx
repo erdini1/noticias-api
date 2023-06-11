@@ -1,19 +1,10 @@
 import { FormControl, InputLabel, Select, MenuItem, Grid } from "@mui/material"
 import useNoticias from "../hooks/useNoticias"
-
-const CATEGORIAS = [
-    { value: 'general', label: 'General' },
-    { value: 'business', label: 'Negocios' },
-    { value: 'entertainment', label: 'Entretenimiento' },
-    { value: 'health', label: 'Salud' },
-    { value: 'science', label: 'Ciencia' },
-    { value: 'sports', label: 'Deportes' },
-    { value: 'technology', label: 'Tecnología' },
-]
+import { CATEGORIAS, PAISES } from "../constants"
 
 const Formulario = () => {
 
-    const { categoria, handleChangeCategoria } = useNoticias()
+    const { categoria, handleChangeCategoria, pais, handleChangePais } = useNoticias()
 
     return (
         <>
@@ -44,8 +35,17 @@ const Formulario = () => {
                         <InputLabel>País</InputLabel>
                         <Select
                             label="pais"
+                            onChange={handleChangePais}
+                            value={pais}
                         >
-
+                            {PAISES.map(pais => (
+                                <MenuItem
+                                    key={pais.value}
+                                    value={pais.value}
+                                >
+                                    {pais.label}
+                                </MenuItem>
+                            ))}
                         </Select>
                     </FormControl>
                 </form>

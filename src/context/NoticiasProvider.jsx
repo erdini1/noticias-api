@@ -18,8 +18,11 @@ const NoticiasProvider = ({ children }) => {
     const handleChangePais = e => {
         setPais(e.target.value)
     }
+    const handleChangePagina = (e, valor) => {
+        setPagina(valor)
+    }
     const consultarAPI = async () => {
-        const url = `https://newsapi.org/v2/top-headlines?country=${pais}&category=${categoria}&lenguage=es&apiKey=${import.meta.env.VITE_API_KEY}`
+        const url = `https://newsapi.org/v2/top-headlines?country=${pais}&category=${categoria}&page=${pagina}&apiKey=${import.meta.env.VITE_API_KEY}`
         const { data } = await axios(url)
         setNoticias(data.articles)
         setTotalNoticias(data.totalResults)
@@ -27,7 +30,13 @@ const NoticiasProvider = ({ children }) => {
 
     useEffect(() => {
         consultarAPI()
+        setPagina(1)
     }, [categoria, pais])
+
+    useEffect(() => {
+        consultarAPI()
+        window.scrollTo(0, 0)
+    }, [pagina])
 
     return (
         <NoticiasContext.Provider
@@ -36,7 +45,10 @@ const NoticiasProvider = ({ children }) => {
                 handleChangeCategoria,
                 pais,
                 handleChangePais,
-                noticias
+                noticias,
+                totalNoticias,
+                pagina,
+                handleChangePagina
             }}
         >
             {children}

@@ -4,7 +4,9 @@ import Noticia from "./Noticia"
 
 const ListadoNoticias = () => {
 
-    const { noticias } = useNoticias()
+    const { noticias, totalNoticias, pagina, handleChangePagina } = useNoticias()
+    // Math.ceil redonde para arriba, si es 2.1 va a traer 3
+    const totalPaginas = Math.ceil(totalNoticias / 20)
 
     return (
         <>
@@ -14,7 +16,7 @@ const ListadoNoticias = () => {
                 variant="h3"
                 component={"h2"}
             >
-                Última Noticias
+                Últimas Noticias
             </Typography>
 
             <Grid
@@ -38,7 +40,12 @@ const ListadoNoticias = () => {
                 justifyContent={"center"}
                 alignItems={"center"}
             >
-                <Pagination count={10} color="primary" />
+                <Pagination
+                    count={totalPaginas}
+                    color="primary"
+                    onChange={handleChangePagina}
+                    page={pagina}
+                />
             </Stack>
 
         </>

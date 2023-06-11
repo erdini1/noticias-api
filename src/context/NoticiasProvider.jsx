@@ -8,6 +8,8 @@ const NoticiasProvider = ({ children }) => {
     const [categoria, setCategoria] = useState("general")
     const [pais, setPais] = useState("ar")
     const [noticias, setNoticias] = useState([])
+    const [pagina, setPagina] = useState(1)
+    const [totalNoticias, setTotalNoticias] = useState(0)
 
     // Este handle va a tomar el valor del select y lo va a aplicar a setCategoria, podria hacerlo en formuario
     const handleChangeCategoria = e => {
@@ -20,6 +22,7 @@ const NoticiasProvider = ({ children }) => {
         const url = `https://newsapi.org/v2/top-headlines?country=${pais}&category=${categoria}&lenguage=es&apiKey=${import.meta.env.VITE_API_KEY}`
         const { data } = await axios(url)
         setNoticias(data.articles)
+        setTotalNoticias(data.totalResults)
     }
 
     useEffect(() => {
